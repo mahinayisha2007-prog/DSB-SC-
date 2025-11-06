@@ -48,12 +48,64 @@ Model Waveform
 <img width="703" height="679" alt="image" src="https://github.com/user-attachments/assets/e7c7c7f8-ccf2-41ac-b1f3-325989941a6f" />
 
 Program
+clc;
+clear;
+close();
+
+// ---------- Given Parameters ----------
+Am = 9.9;       // Message amplitude (V)
+Ac = 19.8;      // Carrier amplitude (V)
+Fm = 560;       // Message frequency (Hz)
+Fc = 5600;      // Carrier frequency (Hz)
+Fs = 55000;     // Sampling frequency (Hz)
+
+// ---------- Time Vector ----------
+t = 0:1/Fs:0.005;   // 5 ms duration
+
+// ---------- 1. Message Signal ----------
+m = Am * sin(2 * %pi * Fm * t);
+
+// ---------- 2. Carrier Signal ----------
+c = Ac * sin(2 * %pi * Fc * t);
+
+// ---------- 3. DSB-SC Modulated Signal ----------
+s = m .* c;   // Suppressed carrier (product of m and c)
+
+// ---------- Plotting ----------
+subplot(3,1,1);
+plot(t, m);
+title('Message Signal');
+xlabel('Time (s)');
+ylabel('Amplitude (V)');
+xgrid();
+
+subplot(3,1,2);
+plot(t, c);
+title('Carrier Signal');
+xlabel('Time (s)');
+ylabel('Amplitude (V)');
+xgrid();
+
+subplot(3,1,3);
+plot(t, s);
+title('DSB-SC Modulated Signal');
+xlabel('Time (s)');
+ylabel('Amplitude (V)');
+xgrid();
+
+// ---------- Display Sample Values ----------
+disp("   Time(s)     Message(V)   Carrier(V)   DSB-SC(V)");
+for i = 1:10:length(t) // every 10th sample for readability
+    mprintf("%10.6f   %10.4f   %10.4f   %10.4f\n", t(i), m(i), c(i), s(i));
+end
 
 Output Graph
+<img width="1215" height="1104" alt="image" src="https://github.com/user-attachments/assets/9ea916dc-eadc-46df-b124-6a83601dc941" />
 
 
 Tablular Column
 
+![WhatsApp Image 2025-11-06 at 10 48 21_0cf6d6df](https://github.com/user-attachments/assets/8b879e98-aaaf-4f7d-b238-29ea0adfa19d)
 
 Result
 
