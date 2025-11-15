@@ -48,64 +48,18 @@ Model Waveform
 <img width="703" height="679" alt="image" src="https://github.com/user-attachments/assets/e7c7c7f8-ccf2-41ac-b1f3-325989941a6f" />
 
 Program
-clc;
-clear;
-close();
 
-// ---------- Given Parameters ----------
-Am = 9.9;       // Message amplitude (V)
-Ac = 19.8;      // Carrier amplitude (V)
-Fm = 560;       // Message frequency (Hz)
-Fc = 5600;      // Carrier frequency (Hz)
-Fs = 55000;     // Sampling frequency (Hz)
+<img width="678" height="708" alt="Screenshot 2025-11-15 133718" src="https://github.com/user-attachments/assets/f2636459-a3fc-45fa-a879-aec5f1ac16e5" />
 
-// ---------- Time Vector ----------
-t = 0:1/Fs:0.005;   // 5 ms duration
-
-// ---------- 1. Message Signal ----------
-m = Am * sin(2 * %pi * Fm * t);
-
-// ---------- 2. Carrier Signal ----------
-c = Ac * sin(2 * %pi * Fc * t);
-
-// ---------- 3. DSB-SC Modulated Signal ----------
-s = m .* c;   // Suppressed carrier (product of m and c)
-
-// ---------- Plotting ----------
-subplot(3,1,1);
-plot(t, m);
-title('Message Signal');
-xlabel('Time (s)');
-ylabel('Amplitude (V)');
-xgrid();
-
-subplot(3,1,2);
-plot(t, c);
-title('Carrier Signal');
-xlabel('Time (s)');
-ylabel('Amplitude (V)');
-xgrid();
-
-subplot(3,1,3);
-plot(t, s);
-title('DSB-SC Modulated Signal');
-xlabel('Time (s)');
-ylabel('Amplitude (V)');
-xgrid();
-
-// ---------- Display Sample Values ----------
-disp("   Time(s)     Message(V)   Carrier(V)   DSB-SC(V)");
-for i = 1:10:length(t) // every 10th sample for readability
-    mprintf("%10.6f   %10.4f   %10.4f   %10.4f\n", t(i), m(i), c(i), s(i));
-end
 
 Output Graph
-<img width="1215" height="1104" alt="Screenshot 2025-11-06 104706" src="https://github.com/user-attachments/assets/5e4d085c-420c-4db0-b850-cadbdb36ddf2" />
+
+<img width="755" height="699" alt="Screenshot 2025-11-15 133450" src="https://github.com/user-attachments/assets/30fdbcc1-90ae-4aa8-a3b2-7e4a33396e98" />
 
 
 Tablular Column
-![WhatsApp Image 2025-11-06 at 10 48 21_0cf6d6df](https://github.com/user-attachments/assets/a783245a-effe-43ae-85e5-14af0ac40b4e)
 
+![WhatsApp Image 2025-11-15 at 13 25 04_a182811d](https://github.com/user-attachments/assets/981673bf-2c98-4d36-9065-ddf43845bfd0)
 
 Result
 
